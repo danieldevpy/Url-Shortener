@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { CreateRandomKey, CreateCustomKey } from './keygen'
+import { CreateRandomKey } from './keygen'
 
 
 
