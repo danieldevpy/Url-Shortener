@@ -1,19 +1,21 @@
-name: Continuos Integration
+name: Continuous Integration
 
 on:
     pull_request
 
 jobs:
-    continuos-integration:
+    continuous-integration:
         runs-on: ubuntu-latest
 
         steps:
             - uses: actions/checkout@v3
-            - name: Using Node.js
-              uses: actions/setup-node@v2
+            
+            - name: Set up Node.js
+              uses: actions/setup-node@v3  # Atualizando para a versão 3
               with:
-                node-version: 22.
-            - name: run install, build and test
+                node-version: '22'  # Certifique-se de que esta versão do Node.js seja a que você precisa
+                
+            - name: Install, build and test
               run: |
                 npm install
                 npm run build
