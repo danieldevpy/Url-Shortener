@@ -1,20 +1,35 @@
-name: Continuos Integration
+name: Continuous Integration
 
 on:
     pull_request
 
 jobs:
-    continuos-integration:
+    continuous-integration:
         runs-on: ubuntu-latest
 
         steps:
             - uses: actions/checkout@v3
-            - name: Using Node.js
+            
+            - name: Set up Node.js
               uses: actions/setup-node@v2
               with:
-                node-version: 22.
-            - name: run install, build and test
+                node-version: '22'
+                
+            - name: Install, build and test
               run: |
                 npm install
                 npm run build
                 npm run test
+
+            - name: Deploy to VPS
+              env:
+                SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }} 
+                USER: ${{ secrets.VPS_USER }} 
+                HOST: ${{ secrets.VPS_HOST }} 
+                DEST: ${{ secrets.VPS_DEST }} 
+              run: |
+                mkdir -p ~/.ssh
+                echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+                chmod 600 ~/.ssh/id_rsa
+                
+                rsync -avz --delete ./dist/ $USER@$HOST:$DEST
