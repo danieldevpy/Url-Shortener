@@ -21,23 +21,22 @@ jobs:
                 npm run build
                 npm run test
 
-            - name: Setup SSH Key
+            - name: Deploy to VPS
+              env:
+                SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+                USER: ${{ secrets.VPS_USER }} 
+                HOST: ${{ secrets.VPS_HOST }} 
+                DEST: ${{ secrets.VPS_DEST }} 
               run: |
                 mkdir -p ~/.ssh
                 echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
                 chmod 600 ~/.ssh/id_rsa
+                
                 ssh-keyscan -p 2266 $HOST >> ~/.ssh/known_hosts
-
-            - name: Check environment variables
+                rsync -avz -e "ssh -p 2266" --delete ./dist/ $USER@$HOST:$DEST
+            
+            - name: Test SSH Connection
               run: |
                 echo "USER: $USER"
                 echo "HOST: $HOST"
-                echo "DEST: $DEST"
-
-            - name: Test SSH Connection
-              run: |
-                ssh -p 2266 -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no $USER@$HOST "echo 'SSH connection successful!'"
-
-            - name: Deploy to VPS
-              run: |
-                rsync -avz -e "ssh -p 2266" --delete ./dist/ $USER@$HOST:$DEST
+                echo "DEST: $DEST" 
