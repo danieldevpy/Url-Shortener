@@ -34,3 +34,9 @@ jobs:
                 
                 ssh-keyscan -p 2266 $HOST >> ~/.ssh/known_hosts
                 rsync -avz -e "ssh -p 2266" --delete ./dist/ $USER@$HOST:$DEST
+            
+            - name: Test SSH Connection
+              run: |
+                echo "USER: $USER"
+                echo "HOST: $HOST"
+                echo "DEST: $DEST" 
