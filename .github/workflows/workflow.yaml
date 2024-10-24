@@ -32,4 +32,4 @@ jobs:
                 echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
                 chmod 600 ~/.ssh/id_rsa
                 
-                rsync -avz --delete ./dist/ $USER@$HOST:$DEST
+                rsync -avz -e "ssh -p 2266" --delete ./dist/ $USER@$HOST:$DEST
