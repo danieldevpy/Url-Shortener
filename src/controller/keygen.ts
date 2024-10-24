@@ -10,7 +10,7 @@ export function CreateRandomKey(length: number = 5): string {
 }
 
 export function CreateCustomKey(key: string): string {
-    if (key.length < 5 || key.length > 10) throw new Error("Tamanho incompativel.");
+    if (key.length > 10) throw new Error("Tamanho incompativel.");
     const regexp = /^[a-zA-Z]*$/;
     if (!regexp.test(key)) throw new Error("Apenas caracters alpha.");
     return key;
