@@ -23,7 +23,7 @@ describe('API tests', () => {
         const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
             method: 'GET',
             query: {
-                key: 'key-not exist',  // Passa a query 'key' para o request
+                key: 'test',  // Passa a query 'key' para o request
             },
         });
 
