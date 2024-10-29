@@ -1,5 +1,8 @@
 # Url-Shortener | Encurtador de URL
 
+![Descrição do GIF](./public/shorneter.gif)
+
+
 Esté um simples encurtador de URL desenvolvido em NEXTJS.
 
 ## Instalação para Teste
