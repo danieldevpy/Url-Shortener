@@ -3,7 +3,9 @@
 ![Descrição do GIF](./public/shorneter.gif)
 
 
-Esté um simples encurtador de URL desenvolvido em NEXTJS.
+URL Shortener é um encurtador de URLs moderno e eficiente desenvolvido em Next.js (utilizando React para o frontend e Node.js para o backend). O projeto segue as melhores práticas de programação, garantindo um código limpo, seguro e fácil de manter. Conta com uma suíte completa de testes automatizados para assegurar a qualidade do software e um pipeline CI/CD que facilita o processo de integração e entrega contínua, garantindo que cada nova funcionalidade seja implementada com segurança e sem impactar a performance e a estabilidade do sistema.
+
+
 
 ## Instalação para Teste
 
