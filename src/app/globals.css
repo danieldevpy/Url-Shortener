@@ -3,14 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #1f2336;
+  --foreground: #ededed;
+  --palet1: #16182a;
+  --margin-card: 20%;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #1f2336;
     --foreground: #ededed;
+    --palet1: #16182a;
   }
 }
 
@@ -18,4 +21,214 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+
+main {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  margin-left: var(--margin-card);
+  margin-right: var(--margin-card);
+  margin-bottom: 3%;
+}
+
+.infos-cards {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.animated-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  margin-left: var(--margin-card);
+  margin-right: var(--margin-card);
+}
+
+.central-box {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 10px;
+  gap: 30px;
+}
+
+.central-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bottom-box {
+  display: flex;
+  flex-direction: column;
+  background-color: #161a2d;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.bottom-box > button > section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.bottom-box > button > section > h3 {
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: 400;
+  font-size: max(26px, min(5vw, 26px));  
+  letter-spacing: 0.2em;
+}
+.apresentation {
+  display: flex;
+  flex-direction: column;
+}
+.apresentation section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.apresentation h1, h2 {
+  font-weight: 800;
+  font-size: max(76px, min(5vw, 76px));
+  line-height: 1;
+  letter-spacing: -.05em;
+  padding: 24px;
+  position: relative;
+  padding: 0px;
+}
+.apresentation h1 {
+  margin-bottom: 10px;
+}
+
+.apresentation h2 {
+  font-weight: 400;
+  font-size: max(26px, min(5vw, 36px));
+}
+.title {
+  background: linear-gradient(90deg, rgba(255,255,255,1) 60%, rgba(255,113,123,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.url-text {
+  color: #ff717b;
+}
+
+.custom-text {
+  color: rgb(255,48,88);
+}
+.button {
+    padding: 10px;
+    background: rgb(255,48,88);
+    background: linear-gradient(123deg, rgba(255,48,88,1) 17%, rgba(255,113,123,1) 58%, rgba(255,113,123,0.5732668067226891) 100%);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.custom-text-field .MuiInputBase-input {
+  font-size: large;
+  background-color: #272b3e;
+  border-radius: 4px;
+  border-color: var(--palet1);
+  color: white; /* ou qualquer outra cor */
+}
+
+/* Define a cor da label */
+.custom-text-field .MuiInputLabel-root {
+  color: #ff717b;
+}
+
+/* Cor da label quando o campo está focado */
+.custom-text-field .Mui-focused .MuiInputLabel-root {
+  color: yellow;
+}
+
+/* Cor da borda quando o campo está focado */
+.custom-text-field .MuiFilledInput-underline:after {
+  border-bottom: 2px solid #ff717b;;
+}
+
+/* Cor da borda ao passar o mouse */
+.custom-text-field:hover .MuiFilledInput-underline:before {
+  border-bottom: 2px solid #ff717b;;
+}
+
+.custom-text-field-key .MuiInputBase-input {
+  padding: 10px;
+  color:  rgb(255, 255, 255);
+  background-color: #272b3e;
+  border-radius: 4px;
+  border-color: var(--palet1);
+  font-size: large;
+
+}
+
+.custom-text-field-key .MuiFormHelperText-root {
+  color: #ff717b /* Escolha a cor desejada */
+}
+
+.card {
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: var(--palet1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+.box-url {
+  display: flex;
+}
+.box-url > div {
+  flex: 1;
+}
+
+.box-url > button {
+  flex: 0.1;
+  height: 45px;
+}
+
+@media (max-width: 500px){
+  footer {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .apresentation {
+    margin-top: 10px;
+  }
+  .animated-container {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .infos-cards {
+    flex-direction: column;
+  }
+  .card {
+    max-width: 100%;
+  }
 }
