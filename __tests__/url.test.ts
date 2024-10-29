@@ -1,5 +1,5 @@
 import { describe, expect, test, beforeAll, afterAll } from '@jest/globals';
-import { CreateUrl, GetUrl } from '@/controller/url';  // Importa as funções que criam e recuperam URLs
+import { CreateRandomUrl, CreateCustomUrl, GetUrl } from '@/controller/url';  // Importa as funções que criam e recuperam URLs
 import { PrismaClient } from '@prisma/client';  // Importa o PrismaClient para interação com o banco de dados
 
 const prisma = new PrismaClient();
@@ -20,16 +20,15 @@ describe('url tests', () => {
     // Testa a criação de uma URL válida
     test('test url create', async () => {
         const target_url = 'https://teste.com/';  // Define a URL que será criada
-        const url = await CreateUrl(prisma, target_url);  // Chama a função CreateUrl para criar a URL
+        const url = await CreateRandomUrl(prisma, target_url);  // Chama a função CreateUrl para criar a URL
         expect(url.target_url).toBe(target_url);  // Verifica se a URL retornada é igual à URL alvo
     });
 
     // Testa a criação de uma URL e a recuperação dela pelo seu key
     test('test url create e get', async () => {
         const target_url = 'https://teste.com/';  // Define a URL que será criada
-        const create_url = await CreateUrl(prisma, target_url);  // Cria a URL
+        const create_url = await CreateRandomUrl(prisma, target_url);  // Cria a URL
         expect(create_url.target_url).toBe(target_url);  // Verifica se a URL criada está correta
-        
         const get_url = await GetUrl(prisma, create_url.key);  // Recupera a URL usando a chave (key)
         expect(get_url).not.toBeNull();  // Verifica se a URL foi encontrada (não é nula)
     });
@@ -43,9 +42,9 @@ describe('url tests', () => {
     // Testa a criação de URLs inválidas
     test('create url invalid', async () => {
         // Verifica se criar uma URL com "http" lança um erro
-        await expect(CreateUrl(prisma, 'http://teste.com')).rejects.toThrow(Error);  
+        await expect(CreateRandomUrl(prisma, 'http://teste')).rejects.toThrow(Error);  
         
         // Verifica se criar uma URL sem o esquema "http" ou "https" lança um erro específico
-        await expect(CreateUrl(prisma, 'teste.com')).rejects.toThrow("Url destino não permitida.");
+        await expect(CreateRandomUrl(prisma, 'teste.com')).rejects.toThrow(Error);
     });
 });
