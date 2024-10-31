@@ -5,7 +5,8 @@ FROM node:22
 WORKDIR /app
 
 # copy files
-COPY package*.json tailwind.config.ts tsconfig.json .env .eslintrc.json ./
+RUN echo 'DATABASE_URL="file:./dev.db"' > .env
+COPY package*.json tailwind.config.ts tsconfig.json .eslintrc.json ./
 COPY jest.config.js next-env.d.ts next.config.ts postcss.config.mjs ./
 COPY src ./src/
 COPY prisma ./prisma/
