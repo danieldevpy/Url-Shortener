@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  shortenerurl:
+    build: .
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+    ports:
+      - "3000:3000"
