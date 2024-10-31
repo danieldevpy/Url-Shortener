@@ -14,7 +14,7 @@ COPY prisma ./prisma/
 # setup
 RUN npm install
 RUN npm run build
-RUN npx prisma init --datasource-provider sqlite
+RUN npx prisma migrate dev --name init
 
 #start
 CMD ["npm", "run", "start"]
